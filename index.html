@@ -18,14 +18,14 @@
 
         <p id="title">TODO List</p>
         <p id="tagline">A place to store the things you have to do!</p>
-        <input type="text" name="filterTodo" id="filterTodo" placeholder="Filter your to-dos">
+        <input type="text" name="filterTodo" id="filterTodo" placeholder="Filter your to-dos" ng-model="$ctrl.filterList">
 
         <section class="taskList">
             <ol>
                 <li ng-repeat="item in $ctrl.tasks | filter: $ctrl.filterList track by $index" ng-class="{'completed': item.completed === true}">
-                    <button type="button" class="complete-btn" ng-if="!item.completed">Complete</button>
+                    <button type="button" class="complete-btn" ng-if="!item.completed" ng-click="$ctrl.completeTask(item);">Complete</button>
                     {{ item.task }}
-                    <button type="button" class="delete-btn"><i class="fas fa-times"></i></button>
+                    <button type="button" class="delete-btn"><i class="fas fa-times" ng-click="$ctrl.deleteTask(item);"></i></button>
                     <div class="clearfix"></div>
                 </li>
             </ol>
@@ -33,7 +33,7 @@
 
 
         <form ng-submit="$ctrl.addTask($ctrl.task)">
-            <input type="text" name="taskDesc" id="taskDesc" ng-model="$ctrl.task.task" placeholder="Add your to-do">
+            <input type="text" name="taskDesc" id="taskDesc" ng-model="$ctrl.task" placeholder="Add your to-do">
             <button id="add-btn">Add</button>
         </form>
 
