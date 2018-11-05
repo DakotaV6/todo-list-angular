@@ -31,6 +31,14 @@ function TodoController() {
         let index = vm.tasks.indexOf(task);
         vm.tasks.splice(index, 1);
     }
+
+    vm.editTask = (task, value) => {
+        let index = vm.tasks.indexOf(task);
+        // console.log(value);
+        if (value !== null) {
+            vm.tasks[index].task = value;
+        }
+    }
 }
 
 

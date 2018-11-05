@@ -18,22 +18,32 @@
 
         <p id="title">TODO List</p>
         <p id="tagline">A place to store the things you have to do!</p>
-        <input type="text" name="filterTodo" id="filterTodo" placeholder="Filter your to-dos" ng-model="$ctrl.filterList">
+        <input class="main-inputs" type="text" name="filterTodo" id="filterTodo" placeholder="Filter your to-dos" ng-model="$ctrl.filterList">
 
         <section class="taskList">
             <ol>
-                <li ng-repeat="item in $ctrl.tasks | filter: $ctrl.filterList track by $index" ng-class="{'completed': item.completed === true}">
+                <li ng-repeat="item in $ctrl.tasks | filter: $ctrl.filterList track by $index">
+
+                    <!-- Complete button, only displays if task not completed -->
                     <button type="button" class="complete-btn" ng-if="!item.completed" ng-click="$ctrl.completeTask(item);">Complete</button>
-                    {{ item.task }}
+
+                    <!-- Task displays as input if not completed -->
+                    <input class="task-input" type="text" ng-model="item.task" ng-if="!item.completed" ng-blur="$ctrl.editTask(item, item.task)">
+
+                    <!-- If complete, will display task with strikethrough -->
+                    <p class="completed-task" ng-if="item.completed"> {{ item.task }} </p>
+
+                    <!-- delete button for task -->
                     <button type="button" class="delete-btn"><i class="fas fa-times" ng-click="$ctrl.deleteTask(item);"></i></button>
                     <div class="clearfix"></div>
+
                 </li>
             </ol>
         </section>
 
 
         <form ng-submit="$ctrl.addTask($ctrl.task)">
-            <input type="text" name="taskDesc" id="taskDesc" ng-model="$ctrl.task" placeholder="Add your to-do">
+            <input class="main-inputs" type="text" name="taskDesc" id="taskDesc" ng-model="$ctrl.task" placeholder="Add your to-do">
             <button id="add-btn">Add</button>
         </form>
 

@@ -23,7 +23,7 @@ body {
     min-height: 325px;
     padding: 15px;
 }
-input {
+.main-inputs {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -52,13 +52,22 @@ input::placeholder {
     padding: 5px;
     margin: 0 10px;
 }
-.completed {
-    text-decoration: line-through;
-}
 li {
     margin: 10px 0;
 }
-
+.task-input {
+    background: none;
+    border: none;
+    font-size: 14px;
+    display: inline-block;
+    width: 200px;
+    height: 25px;
+}
+.completed-task {
+    display: inline-block;
+    margin: 0;
+    text-decoration: line-through;
+}
 .delete-btn {
     cursor: pointer;
     background: none;
